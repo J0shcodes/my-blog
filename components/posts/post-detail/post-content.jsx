@@ -2,8 +2,15 @@ import Image from "next/image";
 import PostHeader from "./post-header";
 import classes from "./post-content.module.css";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import atomDark from "react-syntax-highlighter/dist/cjs/styles/prism/atom-dark";
+import js from "react-syntax-highlighter/dist/cjs/languages/prism/javascript";
+import css from "react-syntax-highlighter/dist/cjs/languages/prism/css";
+import python from "react-syntax-highlighter/dist/cjs/languages/prism/python";
+
+SyntaxHighlighter.registerLanguage("js", js);
+SyntaxHighlighter.registerLanguage("css", css);
+SyntaxHighlighter.registerLanguage("python", python);
 
 const PostContent = (props) => {
   const { post } = props;
@@ -37,8 +44,7 @@ const PostContent = (props) => {
         <SyntaxHighlighter
           style={atomDark}
           language={languageArray[1]}
-          children={children}
-        />
+        >{children}</SyntaxHighlighter>
       );
     },
 
